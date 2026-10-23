@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fast, Typed and Non-Generative: System One Decision Models</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0615;--card:rgba(255,255,255,.06);--ink:#f5f3ff;--mute:#b4a9d6;--line:rgba(255,255,255,.14);--acc:#c4b5fd;--acc2:#f0abfc;--accbg:rgba(167,139,250,.16);--grad:linear-gradient(90deg,#a78bfa,#e879f9);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:radial-gradient(ellipse 80% 60% at 15% 0%,rgba(124,58,237,.55),transparent 60%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(192,38,211,.35),transparent 60%),var(--bg);background-attachment:fixed;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{display:flex;justify-content:space-between;gap:12px;padding:14px 28px;font-size:13px;color:var(--mute);border-bottom:1px solid var(--line)}
+header b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+main{flex:1;position:relative;min-height:0}
+.slide{position:absolute;inset:0;padding:clamp(18px,4vw,48px) clamp(20px,6vw,72px);display:none;overflow-y:auto;flex-direction:column;justify-content:center;gap:18px}
+.slide.on{display:flex}
+.tag{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc2);font-weight:600}
+h1{font-size:clamp(26px,4.2vw,46px);line-height:1.1;margin:0;letter-spacing:-.02em;background:linear-gradient(90deg,#fff,#d8b4fe 60%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+p,li{font-size:clamp(16px,1.9vw,22px);line-height:1.45;margin:0}
+.lead{color:var(--mute);max-width:46ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(10,0,30,.35)}
+.card h3{margin:0 0 8px;font-size:clamp(17px,2vw,22px);color:var(--acc)}
+.card.b h3{color:var(--acc2)}
+ul{margin:0;padding-left:1.1em;display:grid;gap:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.box{background:var(--accbg);border:1px solid var(--acc);border-radius:12px;padding:12px 16px;font-size:clamp(15px,1.8vw,20px)}
+.arrow{color:var(--acc);font-size:26px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);font-size:clamp(15px,1.8vw,20px)}
+th{color:var(--acc);font-weight:600}
+td:first-child{color:var(--mute)}
+.note{font-size:14px;color:var(--mute)}
+code{background:var(--accbg);padding:2px 7px;border-radius:6px;font-size:.92em}
+footer{display:flex;align-items:center;gap:14px;padding:12px 28px;border-top:1px solid var(--line)}
+.bar{flex:1;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .25s}
+button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-size:15px;cursor:pointer}
+button:hover{border-color:var(--acc);background:var(--accbg)}
+#ct{font-size:13px;color:var(--mute);min-width:56px;text-align:center}
+</style>
+</head>
+<body>
+<header><span><b>System One</b> · Fast, Typed and Non-Generative</span><span id="time"></span></header>
+<main>
+
+<section class="slide" data-min="3">
+<div class="tag">1 · What is System One AI</div>
+<h1>A model that decides, not one that writes</h1>
+<p class="lead">It reads a state and returns a typed answer with a probability, in one pass, with no reasoning text.</p>
+<div class="flow">
+<div class="box">State<br><span class="note">text or JSON</span></div><span class="arrow">+</span>
+<div class="box">Typed questions</div><span class="arrow">→</span>
+<div class="box">Typed answers<br><span class="note">+ probabilities</span></div>
+</div>
+<div class="grid">
+<div class="card"><h3>Mental model</h3><p>A probabilistic <code>if</code> statement inside your backend code.</p></div>
+<div class="card b"><h3>First example</h3><p>Jev, from TypeSafe AI. Early access since September 15, 2026.</p></div>
+</div>
+</section>
+
+<section class="slide" data-min="3">
+<div class="tag">2 · System 1 vs System 2</div>
+<h1>Kahneman's idea, applied to AI</h1>
+<div class="wrap"><table>
+<tr><th></th><th>System 1</th><th>System 2</th></tr>
+<tr><td>Human</td><td>Fast, instinct</td><td>Slow, careful</td></tr>
+<tr><td>AI</td><td>Decision model</td><td>Reasoning LLM</td></tr>
+<tr><td>Output</td><td>Typed value + probability</td><td>Text, code, plans</td></tr>
+<tr><td>Best for</td><td>Routing, gating, scoring</td><td>Writing, analysis, planning</td></tr>
+</table></div>
+<p class="lead">Not a replacement. Decision models judge, reasoning models think, software acts.</p>
+</section>
+
+<section class="slide" data-min="4">
+<div class="tag">3 · Discriminative vs Generative</div>
+<h1>Pick an outcome, or build an answer</h1>
+<div class="grid">
+<div class="card"><h3>Discriminative</h3><ul><li>Choose between known outcomes</li><li>Probabilities sum to 1</li><li>Output format is fixed</li></ul></div>
+<div class="card b"><h3>Generative (autoregressive)</h3><ul><li>Writes one token at a time</li><li>Latency grows with output length</li><li>Format can break or drift</li></ul></div>
+</div>
+<p class="lead">Jev works like a discriminative model, but trained at internet scale, so it works zero-shot on new questions. It answers all questions in one parallel pass.</p>
+</section>
+
+<section class="slide" data-min="4">
+<div class="tag">4 · The Three Primitives</div>
+<h1>Choice, Score, Noul</h1>
+<div class="grid">
+<div class="card"><h3>Choice</h3><p>Pick one option.</p><p class="note">Ticket category: billing, technical, account</p></div>
+<div class="card"><h3>Score</h3><p>Rate against a rubric.</p><p class="note">Urgency from low to high</p></div>
+<div class="card"><h3>Noul</h3><p>Yes or no.</p><p class="note">Is the user asking for a refund?</p></div>
+</div>
+<p class="lead">One state, many questions, one round trip. Confidence thresholds live in your code: act, escalate, or fall back.</p>
+</section>
+
+<section class="slide" data-min="4">
+<div class="tag">5 · Jev and Open Source Alternatives</div>
+<h1>Easy to copy the interface, hard to copy the accuracy</h1>
+<div class="grid">
+<div class="card"><h3>Jev (hosted)</h3><ul><li>Vendor claim: 40× to 200× faster than LLMs</li><li>Reported latency: 70 to 500 ms</li><li>Also via gateways like nexos.ai and ZenMux</li></ul></div>
+<div class="card b"><h3>Open source</h3><ul><li><b>Laya</b>: base model to fine-tune</li><li><b>NanoJev</b>: 0.6B, MIT license</li><li><b>SemIf</b>: read option logits from your own model</li><li><b>NLI / GLiClass</b>: older zero-shot classics</li></ul></div>
+</div>
+<p class="note">Independent benchmark: Jev 0.966 macro accuracy vs 0.704 for the best open model. Fine-tuning closes part of the gap.</p>
+</section>
+
+<section class="slide" data-min="4">
+<div class="tag">6 · Trade-offs and Limitations</div>
+<h1>Know when not to use it</h1>
+<div class="grid">
+<div class="card"><h3>Where it wins</h3><ul><li>Routing and classification</li><li>Guard checks and gating</li><li>Fast judge for agent traces</li><li>Lower cost, no format errors</li></ul></div>
+<div class="card b"><h3>Limits</h3><ul><li>No generation, no explanation</li><li>Text input only</li><li>Hosted, proprietary, very new</li><li>Valid does not mean correct: build your own eval set</li></ul></div>
+</div>
+<p class="lead">Rule: fixed options, frequent, latency matters → System One. Needs reasoning or writing → LLM.</p>
+</section>
+
+<section class="slide" data-min="5">
+<div class="tag">7 · Demo</div>
+<h1>Support ticket triage: System 1 + System 2</h1>
+<div class="flow">
+<div class="box"><b>1</b> Ticket text</div><span class="arrow">→</span>
+<div class="box"><b>2</b> System One<br><span class="note">Choice + Score + Noul</span></div><span class="arrow">→</span>
+<div class="box"><b>3</b> Code routes<br><span class="note">by confidence</span></div><span class="arrow">→</span>
+<div class="box"><b>4</b> LLM drafts reply<br><span class="note">only if needed</span></div>
+</div>
+<div class="grid">
+<div class="card"><h3>Show</h3><ul><li>Typed output with probabilities</li><li>Latency and cost per call</li></ul></div>
+<div class="card b"><h3>Compare</h3><ul><li>Same job with an LLM: time, tokens, cost</li><li>Optional: open source model, same questions</li></ul></div>
+</div>
+<p class="lead">Takeaway: find your three most frequent LLM calls that return a label, and test them.</p>
+</section>
+
+</main>
+<footer>
+<button id="prev" aria-label="Previous slide">←</button>
+<div class="bar"><i id="fill"></i></div>
+<span id="ct"></span>
+<button id="next" aria-label="Next slide">→</button>
+</footer>
+<script>
+(function(){
+var s=[].slice.call(document.querySelectorAll('.slide')),i=0,
+ct=document.getElementById('ct'),fill=document.getElementById('fill'),tm=document.getElementById('time');
+var mins=s.map(function(x){return +x.dataset.min});
+function show(n){
+ i=Math.max(0,Math.min(s.length-1,n));
+ s.forEach(function(x,k){x.classList.toggle('on',k===i)});
+ ct.textContent=(i+1)+' / '+s.length;
+ fill.style.width=((i+1)/s.length*100)+'%';
+ var used=mins.slice(0,i).reduce(function(a,b){return a+b},0);
+ tm.textContent='~'+used+' of 27 min · this slide '+mins[i]+' min';
+ try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+}
+document.getElementById('next').onclick=function(){show(i+1)};
+document.getElementById('prev').onclick=function(){show(i-1)};
+document.addEventListener('keydown',function(e){
+ if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();show(i+1)}
+ if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();show(i-1)}
+});
+var x0=null;
+document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){
+ if(x0===null)return;var d=e.changedTouches[0].clientX-x0;
+ if(Math.abs(d)>50)show(d<0?i+1:i-1);x0=null;
+});
+var h=parseInt((location.hash||'').slice(1),10);
+show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>

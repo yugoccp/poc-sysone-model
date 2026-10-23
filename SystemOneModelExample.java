@@ -4,7 +4,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class OllamaNimbleTypesExample {
+/**
+ * Example Java code demonstrating how to send a multi-type evaluation request to the Nimble model
+ * using the System One API. This example includes choice, noul, and score question types.
+ */
+public class SystemOneModelExample {
 
     public static void main(String[] args) throws Exception {
         
